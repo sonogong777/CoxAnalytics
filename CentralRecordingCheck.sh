@@ -36,15 +36,18 @@ do
 done > $TMPOUT
 
 echo "Data capture complete, creating csv file"
+
 #sort by site name
 site=($(cat $TMPOUT|awk -F"," '{print $1}'|sort|uniq))
+grep Descr $TMPOUT|head -1|cut -d, -f2-|xargs printf ",%s\n" > $CSVOUT
 
 for site in ${site[*]}
 do
-  grep $site $TMPOUT
-done > $CSVOUT
+  grep $site $TMPOUT|grep -v Desc
+done >> $CSVOUT
 
 #clean up tempfile
-rm -rf $TMPOUT
+#rm -rf $TMPOUT
+mv $TMPOUT backup/
 
 echo "`date +%Y%m%d%H%M`: $0 COMPLETE" >> $LOGFILE

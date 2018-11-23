@@ -6,3 +6,15 @@ Unable to ping server 184.183.214.15
 201811230012: START ./CentralRecordingCheck.sh Script
 Data capture complete, creating csv file
 201811230012: ./CentralRecordingCheck.sh COMPLETE
+201811230123: START ./CentralRecordingCheck.sh Script
+Data capture complete, creating csv file
+201811230123: ./CentralRecordingCheck.sh COMPLETE
+201811230133: START ./CentralRecordingCheck.sh Script
+Data capture complete, creating csv file
+201811230134: ./CentralRecordingCheck.sh COMPLETE
+201811230137: START ./CentralRecordingCheck.sh Script
+Data capture complete, creating csv file
+201811230137: ./CentralRecordingCheck.sh COMPLETE
+201811230139: START ./CentralRecordingCheck.sh Script
+Data capture complete, creating csv file
+201811230139: ./CentralRecordingCheck.sh COMPLETE
