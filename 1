@@ -11,18 +11,17 @@ TMPOUT2="$0.$DATE.tmp2"
 CSVOUT="$0.$DATE.csv"
 
 #main loop 
-#for i in `cat $LIST`
-#do 
-#  scp -i $i -q RecordingCheck.sh root@$i:/root/
-#  ssh -i $i -q root@$i ./RecordingCheck.sh $i
-#done > $TMPOUT
-
+for i in `cat $LIST`
+do 
+  scp -i $i -q RecordingCheck.sh root@$i:/root/
+  ssh -i $i -q root@$i ./RecordingCheck.sh $i
+done > $TMPOUT
 site=($(cat $TMPOUT|awk -F"," '{print $1}'|sort|uniq))
 max=$(($(cat $TMPOUT |head -1|grep -o ,|wc -l)+1))
 
 for site in ${site[*]}
 do
-  for ((i=2; i<="$max"; i++))
+  for ((i=1; i<="$max"; i++))
   do
     grep $site $TMPOUT|cut -f"$i" -d,|paste -s -d, -
   done  

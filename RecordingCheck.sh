@@ -32,16 +32,16 @@ done
 #main loop 
 for i in $(seq $DAYS -1 1)
 do
-   echo -n "$SITE,${DAY[$i]},"
+   echo -n "$SITE,${DAY[$i]},$SITE:Scheduled:"
    #schedules
    echo -n `$DBCONN "select count(*) from Recordings where ScheduledTime >= '${DAY[$i]}' AND ScheduledTime < '${DAY[$i-1]}' AND XRID like 'V%';"`
-   echo -n ","
+   echo -n ",$SITE:Recordings:"
    #Recording
    echo -n `$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND XRID like 'V%';"`
-   echo -n ","
+   echo -n ",$SITE:RecordingFailure:"
    #Recording Failure
    echo -n `$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND XRID like 'V%' AND ( (StatSegmentsSuccess / (StatSegmentsSuccess + StatSegmentsFailure + StatSegmentsCompleteFailure) < .98) OR (StatSegmentsSuccess =0) );"`
-   echo -n ","
+   echo -n ",$SITE:AccountWithRecording:"
    #Accounts with Recording
    echo `$DBCONN "select count(distinct(substring(AccountID,1,20))) as 'Accounts' from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND XRID like 'V%';"`
 done
