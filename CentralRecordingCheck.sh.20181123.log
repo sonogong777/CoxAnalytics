@@ -1,0 +1,8 @@
+201811230001: START ./CentralRecordingCheck.sh Script
+201811230008: START ./CentralRecordingCheck.sh Script
+Key file SD not found
+201811230010: START ./CentralRecordingCheck.sh Script
+Unable to ping server 184.183.214.15
+201811230012: START ./CentralRecordingCheck.sh Script
+Data capture complete, creating csv file
+201811230012: ./CentralRecordingCheck.sh COMPLETE
