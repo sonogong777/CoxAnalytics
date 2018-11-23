@@ -8,7 +8,6 @@ VERSION=0.1
 LIST="cox-memsql-list"
 DATE=`date +%Y%m%d`
 TMPOUT="$0.$DATE.tmp"
-TMPOUT2="$0.$DATE.tmp2"
 CSVOUT="$0.$DATE.csv"
 LOGFILE="$0.$DATE.log"
 
