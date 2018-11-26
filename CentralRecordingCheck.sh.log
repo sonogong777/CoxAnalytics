@@ -5,3 +5,11 @@ Data capture complete, creating csv file
 201811260854: START ./CentralRecordingCheck.sh Script
 Data capture complete, creating csv file
 201811260854: ./CentralRecordingCheck.sh COMPLETE
+201811260910: START ./CentralRecordingCheck.sh Script
+Key file 184.183.215.15 not found
+201811260910: START ./CentralRecordingCheck.sh Script
+Data capture complete, creating csv file
+201811260911: ./CentralRecordingCheck.sh COMPLETE
+201811260912: START ./CentralRecordingCheck.sh Script
+Data capture complete, creating csv file
+201811260913: ./CentralRecordingCheck.sh COMPLETE

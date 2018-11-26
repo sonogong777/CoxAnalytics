@@ -24,14 +24,14 @@ fi
 for i in `cat $LIST|awk '{print $1}'`
 do
   #check ssh key 
-  if [ ! -f $i ];then
+  if [ ! -f ../CoxKey/$i ];then
      echo "Key file $i not found" >> $LOGFILE
      exit 1
   fi
 
   #scp and execute script.
-  scp -i $i -q RecordingCheck.sh root@$i:/root/
-  ssh -i $i -q root@$i ./RecordingCheck.sh $i
+  scp -i ../CoxKey/$i -q RecordingCheck.sh root@$i:/root/
+  ssh -i ../CoxKey/$i -q root@$i ./RecordingCheck.sh $i
 
 done > $TMPOUT
 
@@ -50,4 +50,4 @@ done >> $CSVOUT
 #rm -rf $TMPOUT
 mv $TMPOUT backup/
 
-echo "`date +%Y%m%d%H%M`: $0 COMPLETE" >> $LOGFILE
+echo "`date +%Y%m%d%H%M`: $0 COMPLETE" 

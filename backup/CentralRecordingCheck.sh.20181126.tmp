@@ -1,6 +1,6 @@
 SD,Description,2018-11-21,2018-11-22,2018-11-23,2018-11-24,2018-11-25
-SD,Scheduled,146,150,139,247,315
-SD,Recordings,216,161,138,160,182
+SD,Scheduled,146,150,139,247,314
+SD,Recordings,216,161,138,160,181
 SD,RecordingFailure,3,1,0,0,0
 SD,AccountWithRecording,53,49,41,52,52
 DUKE,Description,2018-11-21,2018-11-22,2018-11-23,2018-11-24,2018-11-25
@@ -24,7 +24,7 @@ RI,Recordings,0,0,0,0,0
 RI,RecordingFailure,0,0,0,0,0
 RI,AccountWithRecording,0,0,0,0,0
 DEER,Description,2018-11-21,2018-11-22,2018-11-23,2018-11-24,2018-11-25
-DEER,Scheduled,372,518,499,1006,952
-DEER,Recordings,539,398,407,692,666
+DEER,Scheduled,369,513,499,1006,951
+DEER,Recordings,537,394,405,689,666
 DEER,RecordingFailure,0,0,0,0,0
-DEER,AccountWithRecording,146,124,114,146,154
+DEER,AccountWithRecording,144,124,114,146,154
