@@ -9,7 +9,7 @@ LIST="cox-memsql-list"
 DATE=`date +%Y%m%d`
 TMPOUT="$0.$DATE.tmp"
 CSVOUT="$0.$DATE.csv"
-LOGFILE="$0.$DATE.log"
+LOGFILE="$0.log"
 
 exec >  >(tee -ia $LOGFILE)
 exec 2> >(tee -ia $LOGFILE >&2)
