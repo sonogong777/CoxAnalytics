@@ -1,13 +1,19 @@
-#!/bin/bash 
+#!/bin/bash
 #SITE="SD"
+#Single day report for daily accumulation.
+TIME=`date +%Y-%m-%d`
 SITE=$(crontab -l|grep SITE|awk '{print $6}'|awk -F"=" '{print $2}'|tr '[:lower:]' '[:upper:]')
 DBSERVER="$1"
-DAYS=7
-OUTPUT=$0.output.csv
+DAYS=1
+OUTPUT="report/$SITE.$TIME.output.csv"
 DATABASE="riodev"
 DBPORT="3306"
 DEBUG=0
 DBCONN="memsql -sN -D riodev -u root -h $DBSERVER -P $DBPORT -e"
+LOGFILE="log/$0.log"
+
+exec >  >(tee -ia $LOGFILE)
+exec 2> >(tee -ia $LOGFILE >&2)
 
 #usage
 
@@ -18,50 +24,38 @@ if [ "$#" -gt 1 ];then
   exit
 fi
 
-#set up the DAY 
+#set up the DAY
 for i in $(seq 0 $DAYS)
-do 
+do
   DAY[$i]=`date --date="$i days ago" +%Y-%m-%d`
 done
 
 
 #site information
 #printf "%4s," $SITE
+i=$DAYS
 
+#main loop
+main(){
 
-#main loop 
 echo -n "$SITE,Description"
-for i in $(seq $DAYS -1 1)
-do
   echo -n ",${DAY[$i]}"
-done
 echo ""
 
 echo -n "$SITE,Scheduled"
-for i in $(seq $DAYS -1 1)
-do
   echo -n ",`$DBCONN "select count(*) from Recordings where ScheduledTime >= '${DAY[$i]}' AND ScheduledTime < '${DAY[$i-1]}' AND XRID like 'V%';"`"
-done
 echo ""
 
 echo -n "$SITE,Recordings"
-for i in $(seq $DAYS -1 1)
-do
   echo -n ",`$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND XRID like 'V%';"`"
-done
 echo ""
 
 echo -n "$SITE,RecordingFailure"
-for i in $(seq $DAYS -1 1)
-do
   echo -n ",`$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND XRID like 'V%' AND ( (StatSegmentsSuccess / (StatSegmentsSuccess + StatSegmentsFailure + StatSegmentsCompleteFailure) < .98) OR (StatSegmentsSuccess =0) );"`"
-done
 echo ""
 
 echo -n "$SITE,AccountWithRecording"
-for i in $(seq $DAYS -1 1)
-do
   echo -n ",`$DBCONN "select count(distinct(substring(AccountID,1,20))) as 'Accounts' from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND XRID like 'V%';"`"
-done
 echo ""
-
+}
+main > $OUTPUT

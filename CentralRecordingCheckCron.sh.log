@@ -1,0 +1,10 @@
+201811280205: START ./CentralRecordingCheckCron.sh Script
+scp: /root/report/*.csv: No such file or directory
+Data capture complete, creating csv file
+201811280205: ./CentralRecordingCheckCron.sh COMPLETE
+201811280806: START ./CentralRecordingCheckCron.sh Script
+Data capture complete, creating csv file
+201811280807: ./CentralRecordingCheckCron.sh COMPLETE
+201811290827: START ./CentralRecordingCheckCron.sh Script
+Data capture complete, creating csv file
+201811290828: ./CentralRecordingCheckCron.sh COMPLETE
