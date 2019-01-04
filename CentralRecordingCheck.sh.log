@@ -23,3 +23,6 @@ Data capture complete, creating csv file
 201811290959: START ./CentralRecordingCheck.sh Script
 Data capture complete, creating csv file
 201811291000: ./CentralRecordingCheck.sh COMPLETE
+201901041028: START ./CentralRecordingCheck.sh Script
+Data capture complete, creating csv file
+201901041028: ./CentralRecordingCheck.sh COMPLETE

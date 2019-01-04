@@ -47,14 +47,14 @@ echo ""
 echo -n "$SITE,Recordings"
 for i in $(seq $DAYS -1 1)
 do
-  echo -n ",`$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND XRID like 'V%';"`"
+  echo -n ",`$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND (ErasedTime = 0 OR ErasedTime > StartTime) AND XRID like 'V%';"`"
 done
 echo ""
 
 echo -n "$SITE,RecordingFailure"
 for i in $(seq $DAYS -1 1)
 do
-  echo -n ",`$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND XRID like 'V%' AND ( (StatSegmentsSuccess / (StatSegmentsSuccess + StatSegmentsFailure + StatSegmentsCompleteFailure) < .98) OR (StatSegmentsSuccess =0) );"`"
+  echo -n ",`$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND (ErasedTime = 0 OR ErasedTime > StartTime) AND XRID like 'V%' AND ( (StatSegmentsSuccess / (StatSegmentsSuccess + StatSegmentsFailure + StatSegmentsCompleteFailure) < .98) OR (StatSegmentsSuccess =0) );"`"
 done
 echo ""
 

@@ -7,6 +7,7 @@
 VERSION=0.1
 LIST="cox-memsql-list"
 DATE=`date +%Y%m%d`
+YEST=`date -v -1d +%Y-%m-%d`
 TMPOUT="$0.$DATE.tmp"
 CSVOUT="$0.$DATE.csv"
 LOGFILE="$0.log"
@@ -31,11 +32,14 @@ do
 
   #scp and execute script.
   scp -i ../CoxKey/$i -q root@$i:/root/report/*.csv report/
+  ssh -i ../CoxKey/$i -q root@$i "mv report/*csv report/old"
 #  ssh -i ../CoxKey/$i -q root@$i ./RecordingCheck.sh $i
 
 done > $TMPOUT
 
 echo "Data capture complete, creating csv file"
+cat report/*.csv > report/new.csv
+#mv report/*.csv report/old/
 
 ##sort by site name
 #site=($(cat $TMPOUT|awk -F"," '{print $1}'|sort|uniq))

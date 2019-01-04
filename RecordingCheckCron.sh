@@ -47,11 +47,11 @@ echo -n "$SITE,Scheduled"
 echo ""
 
 echo -n "$SITE,Recordings"
-  echo -n ",`$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND XRID like 'V%';"`"
+  echo -n ",`$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND (ErasedTime = 0 OR ErasedTime > StartTime) AND XRID like 'V%';"`"
 echo ""
 
 echo -n "$SITE,RecordingFailure"
-  echo -n ",`$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND XRID like 'V%' AND ( (StatSegmentsSuccess / (StatSegmentsSuccess + StatSegmentsFailure + StatSegmentsCompleteFailure) < .98) OR (StatSegmentsSuccess =0) );"`"
+  echo -n ",`$DBCONN "select count(*) from Recordings where StartTime >= '${DAY[$i]}' AND StartTime < '${DAY[$i-1]}' AND (ErasedTime = 0 OR ErasedTime > StartTime) AND XRID like 'V%' AND ( (StatSegmentsSuccess / (StatSegmentsSuccess + StatSegmentsFailure + StatSegmentsCompleteFailure) < .98) OR (StatSegmentsSuccess =0) );"`"
 echo ""
 
 echo -n "$SITE,AccountWithRecording"
